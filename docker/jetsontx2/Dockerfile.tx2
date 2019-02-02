@@ -130,7 +130,6 @@ RUN sudo /bin/bash -c " \
       sudo apt-get install -y ros-kinetic-desktop-full; \
       echo \"export QT_X11_NOMITSHM=1\" >> ~/.bashrc"
 
-
 ############################################################
 ################## Install OpenCV ##########################
 ############################################################
