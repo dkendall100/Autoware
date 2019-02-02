@@ -68,6 +68,11 @@ subs :
         desc : gmsl camera. runs only on PX2
         probe:
         run  : roslaunch autoware_driveworks_interface gmsl_interface
+      
+      - name : Intel Realsense D Series
+        desc : Intel's D series stereoscopic cameras
+        probe:
+        run  : roslaunch realsense2_camera rs_camera.launch
 
       - name : AVT Vimba Mako
         desc : Allied Vision Technologies Mako Camera. Requires the installation of avt_vimba_camera package and Vimba SDK.
