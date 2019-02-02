@@ -62,6 +62,18 @@ RUN /bin/bash -c " \
       echo \"source /opt/ros/kinetic/setup.bash\" >> ~/.bashrc"
 
 ############################################################
+################## Install IntelRealSense ##################
+############################################################
+
+      RUN sudo /bin/bash -c " \
+        #Install IntelRealSense Libraries not rospackage
+          sudo apt-key adv --keyserver keys.gnupg.net --recv-key C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C8B3A55A6F3EFCDE; \
+          sudo add-apt-repository "deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo xenial main" -u; \
+          sudo apt-get update; \
+          sudo apt-get install -y librealsense2-dkms librealsense2-utils librealsense2-dev librealsense2-dbg;"
+
+
+############################################################
 ################### Setup Environment ######################
 ############################################################
 
@@ -75,8 +87,8 @@ RUN /bin/bash -c " \
       usermod -aG sudo \$USERNAME; \
       echo \"\$USERNAME ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers.d/\$USERNAME; \
       chmod 0440 /etc/sudoers.d/\$USERNAME; \
-      usermod --uid 1000 \$USERNAME; \
-      groupmod --gid 1000 \$USERNAME; \
+      usermod --uid 0 \$USERNAME; \
+      groupmod --gid 0 \$USERNAME; \
       usermod -a -G video \$USERNAME"
 
 # Change user
@@ -118,6 +130,7 @@ RUN sudo /bin/bash -c " \
       sudo apt-get install -y ros-kinetic-desktop-full; \
       echo \"export QT_X11_NOMITSHM=1\" >> ~/.bashrc"
 
+
 ############################################################
 ################## Install OpenCV ##########################
 ############################################################
@@ -133,7 +146,7 @@ RUN /bin/bash -c " \
                               libpostproc-dev libswscale-dev libeigen3-dev libtbb-dev \
                               libgtk2.0-dev \
                               cmake \
-                              pkg-config; \ 
+                              pkg-config; \
       sudo apt-get install -y python-dev python-numpy python-py python-pytest \
                               python3-dev python3-numpy python3-py python3-pytest \
                               libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev; \
@@ -175,7 +188,7 @@ RUN /bin/bash -c " \
        ../; \
       make -j6; \
       sudo make install; \
-      sudo ldconfig" 
+      sudo ldconfig"
 
 ############################################################
 ################## Install Autoware ########################
@@ -216,7 +229,7 @@ RUN /bin/bash -c " \
       wget https://pjreddie.com/media/files/yolov3.weights; \
       wget https://pjreddie.com/media/files/yolov3-tiny.weights; \
       cd ~/Autoware/ros/src/computing/perception/detection/vision_detector/packages/vision_darknet_detect/darknet/cfg; \
-   #   wget https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-tiny.cfg; \  
+   #   wget https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3-tiny.cfg; \
    # Install Autoware
       source ~/.bashrc; \
       source /opt/ros/kinetic/setup.bash; \
