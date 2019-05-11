@@ -15,3 +15,9 @@
 [submodule "ros/src/simulation/gazebo_simulator/worlds/external/car_demo"]
 	path = ros/src/simulation/gazebo_simulator/worlds/external/car_demo
 	url = https://github.com/CPFL/car_demo.git
+[submodule "ros/src/sensing/drivers/lidar/packages/velodyne"]
+	path = ros/src/sensing/drivers/lidar/packages/velodyne
+	url = https://github.com/ros-drivers/velodyne.git
+[submodule "ros/src/sensing/drivers/camera/packages/librealsense"]
+	path = ros/src/sensing/drivers/camera/packages/librealsense
+	url = git@github.com:IntelRealSense/librealsense.git
